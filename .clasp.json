@@ -1,11 +1,10 @@
 {
-  "scriptId": "1uX3pwUJW9tHXyVN08k-5UIRC5hfJ5EQrglxB9qibJcMZEfw2qRVir8mp",
-  "rootDir": "src",
-  "projectId": "utility-dynamo-363300",
+  "scriptId": "YOUR_SCRIPT_ID",
+  "rootDir": "dist",
+  "projectId": "YOUR_PROJECT_ID",
   "scriptExtensions": [
     ".js",
-    ".gs",
-    ".ts"
+    ".gs"
   ],
   "htmlExtensions": [
     ".html"

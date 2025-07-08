@@ -19,7 +19,6 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "types": [
-      "vitest/globals",
       "google-apps-script"
     ]
   }

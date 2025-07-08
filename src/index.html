@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <title>WebApp com Clasp e TS</title>
+  </head>
+  <body>
+    <h1>Welcome to my WebApp!</h1>
+    <p id="message">Loading messages from server...</p>
+    <button onclick="searchNewMessage()">Update messages</button>
+
+    <script>
+      function loadInitialMessage() {
+        google.script.run
+          .withSuccessHandler(updateParagraph)
+          .withFailureHandler(handleException)
+          .getMessageFromServer();
+      }
+
+      function searchNewMessage() {
+        document.getElementById("message").innerText = "Searching new message...";
+        google.script.run
+          .withSuccessHandler(updateParagraph)
+          .withFailureHandler(handleException)
+          .getMessageFromServer();
+      }
+
+      function updateParagraph(serverMessage) {
+        document.getElementById("message").innerText = serverMessage;
+      }
+
+      function handleException(erro) {
+        document.getElementById("message").innerText = "Erro: " + erro.message;
+      }
+
+      window.onload = loadInitialMessage;
+    </script>
+  </body>
+</html>

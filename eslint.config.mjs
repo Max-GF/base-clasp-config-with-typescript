@@ -21,10 +21,11 @@ export default defineConfig([
     rules: {
       "no-new": "off",
       "@typescript-eslint/no-extraneous-class": "off",
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
-      ],
+      "@typescript-eslint/no-unused-vars": "off",
+      // "@typescript-eslint/no-unused-vars": [
+      //   "error",
+      //   { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      // ],
       "prettier/prettier": [
         "error",
         {
