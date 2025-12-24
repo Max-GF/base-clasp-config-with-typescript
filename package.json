@@ -1,15 +1,19 @@
 {
   "name": "base-clasp-config-with-typescript",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
-  "main": "index.js",
+  "main": "code.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:frontend": "vite",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "build": "tsc && cpx \"src/**/*.{html,json}\" dist"
+    "build:backend": "esbuild src/back-end/infra/main.ts --bundle --outfile=dist/Code.js --platform=browser --target=es2019 --format=esm",
+    "build:frontend": "vite build",
+    "build": "node build.js",
+    "deploy": "pnpm run build && clasp push"
   },
   "keywords": [],
-  "author": "",
+  "author": "Max Gambarini Filho",
   "license": "ISC",
   "devDependencies": {
     "@eslint/config-helpers": "^0.2.1",
@@ -17,20 +21,36 @@
     "@eslint/js": "^9.23.0",
     "@swc/cli": "^0.6.0",
     "@swc/core": "^1.11.16",
+    "@tailwindcss/postcss": "^4.1.18",
     "@types/google-apps-script": "^1.0.99",
     "@types/node": "^22.10.7",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "autoprefixer": "^10.4.23",
     "cpx": "^1.5.0",
     "dotenv": "^16.5.0",
+    "esbuild": "^0.27.2",
     "eslint": "^9.24.0",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
     "globals": "^16.0.0",
+    "postcss": "^8.5.6",
     "source-map-support": "^0.5.21",
+    "tailwindcss": "^4.1.18",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.29.0",
-    "unplugin-swc": "^1.5.2"
+    "unplugin-swc": "^1.5.2",
+    "vite": "^7.3.0",
+    "vite-plugin-singlefile": "^2.3.0"
   },
-  "packageManager": "pnpm@10.7.1"
+  "packageManager": "pnpm@10.7.1",
+  "dependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  }
 }

@@ -1,24 +1,36 @@
 import js from "@eslint/js";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
+import reactPlugin from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
 import { defineConfig, globalIgnores } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default defineConfig([
   {
-    files: ["**/*.{js,mjs,cjs,ts}"],
-    plugins: { js },
+    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
+    plugins: { js, react: reactPlugin, "react-hooks": reactHooks },
     extends: ["js/recommended"],
+    settings: {
+      react: {
+        version: "detect", // Detecta a versão do React automaticamente
+      },
+    },
   },
   {
-    files: ["**/*.{js,mjs,cjs,ts}"],
-    languageOptions: { globals: globals.node },
+    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
+    languageOptions: { globals: { ...globals.node, ...globals.browser } },
   },
   tseslint.configs.strict, // recommended config for typescript
   tseslint.configs.stylistic,
   eslintPluginPrettier,
   {
     rules: {
+      // Regras recomendadas do React (manualmente aplicadas para Flat Config)
+      ...reactPlugin.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+      "react/react-in-jsx-scope": "off",
+
       "no-new": "off",
       "@typescript-eslint/no-extraneous-class": "off",
       "@typescript-eslint/no-unused-vars": "off",
@@ -40,7 +52,7 @@ export default defineConfig([
         },
         {
           selector: "variable",
-          format: ["camelCase"],
+          format: ["camelCase", "PascalCase", "UPPER_CASE"],
           leadingUnderscore: "allow", // allow "_" in variable names
         },
         {

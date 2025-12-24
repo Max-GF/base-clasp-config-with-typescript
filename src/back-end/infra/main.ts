@@ -5,6 +5,5 @@ function doGet(
   return HtmlService.createHtmlOutputFromFile("index").setTitle("My TS WebApp");
 }
 
-function getMessageFromServer(): string {
-  return `Hi from the server! The current time is ${new Date().toLocaleTimeString()}.`;
-}
+// Google AppScripts Base Functions
+globalThis.doGet = doGet;
